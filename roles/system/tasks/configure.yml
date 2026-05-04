@@ -64,3 +64,5 @@
 - name: Configure systemd-journald to persist storage
   ansible.builtin.include_role:
     name: persist_journald
+    apply:
+      become: true
