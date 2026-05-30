@@ -27,3 +27,9 @@
     signed_by: "{{ item.keyring }}"
     state: present
   loop: "{{ apt_repos }}"
+  register: apt_sources_result
+- name: Refresh apt cache when sources changed
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+  when: apt_sources_result is changed
