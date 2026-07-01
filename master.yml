@@ -35,3 +35,4 @@
     - file_manager
 #   - reverse_proxy
     - drift_management
+    - hifis.toolkit.unattended_upgrades
