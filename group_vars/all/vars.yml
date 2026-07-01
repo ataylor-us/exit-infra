@@ -1,0 +1,38 @@
+---
+tailscale_authkey: "dummy"
+username: alex
+group: alex
+podman_data_dir: "/var/opt"
+podman_nfs_data_dir: "/misc"
+default_quadlet_options:
+  - AutoUpdate=registry
+  - Pull=missing
+  - |
+    [Unit]
+    After=network-online.target nss-lookup.target autofs.service
+
+    [Service]
+    Restart=always
+
+    [Install]
+    WantedBy=default.target
+nfs_quadlet_options:
+  - AutoUpdate=registry
+  - Pull=missing
+  - |
+    [Unit]
+    After=network-online.target nss-lookup.target autofs.service
+    RequiresMountsFor={{ service_data_dir }}
+
+    [Service]
+    Restart=always
+
+    [Install]
+    WantedBy=default.target
+default_podman_interface: "podman1"
+timezone: "America/New_York"
+puppet_server: "{{ lookup('community.general.passwordstore', 'Repositories/debian-base-infra/puppet_server') }}"
+mailgun_user: "{{ lookup('community.general.passwordstore', 'Repositories/debian-base-infra/mailgun_user') }}"
+mailgun_password: "{{ lookup('community.general.passwordstore', 'Repositories/debian-base-infra/mailgun_password') }}"
+mailgun_from: "{{ lookup('community.general.passwordstore', 'Repositories/debian-base-infra/mailgun_from') }}"
+notification_email: "{{ lookup('community.general.passwordstore', 'Repositories/debian-base-infra/notification_email') }}"

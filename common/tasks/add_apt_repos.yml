@@ -1,0 +1,35 @@
+---
+- name: Create keyrings directory
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+    owner: root
+    group: root
+- name: Download gpg keys
+  become: true
+  ansible.builtin.get_url:
+    url: "{{ item.key_url }}"
+    dest: "{{ item.keyring }}"
+    mode: "0644"
+    owner: root
+    group: root
+  loop: "{{ apt_repos }}"
+- name: Add apt sources
+  become: true
+  ansible.builtin.deb822_repository:
+    name: "{{ item.name }}"
+    types: deb
+    uris: "{{ item.url }}"
+    suites: "{{ item.suite }}"
+    components: "{{ item.component }}"
+    signed_by: "{{ item.keyring }}"
+    state: present
+  loop: "{{ apt_repos }}"
+  register: apt_sources_result
+- name: Refresh apt cache when sources changed
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+  when: apt_sources_result is changed

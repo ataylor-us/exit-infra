@@ -1,0 +1,13 @@
+---
+apt_repos:
+  - name: openvox
+    url: https://apt.voxpupuli.org
+    key_url: https://apt.voxpupuli.org/openvox-keyring.gpg
+    keyring: /etc/apt/keyrings/openvox.gpg
+    suite: "debian{{ ansible_facts['distribution_major_version'] }}"
+    component: openvox8
+packages:
+  - openvox-agent
+enabled_services:
+  - puppet
+puppet_environment: production

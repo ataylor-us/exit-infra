@@ -1,0 +1,20 @@
+---
+- name: Write puppet.conf
+  become: true
+  ansible.builtin.template:
+    src: puppet.conf.j2
+    dest: /etc/puppetlabs/puppet/puppet.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart puppet agent
+- name: Add /opt/puppetlabs/bin to sudo secure_path
+  become: true
+  ansible.builtin.copy:
+    content: |
+      Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/puppetlabs/bin"
+    dest: /etc/sudoers.d/puppet-path
+    owner: root
+    group: root
+    mode: "0440"
+    validate: visudo -cf %s

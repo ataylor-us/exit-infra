@@ -1,0 +1,16 @@
+---
+roles:
+  - name: persist_journald
+    src: https://github.com/cisagov/ansible-role-persist-journald
+    version: v3.1.0
+collections:
+  - name: community.general
+    version: "13.1.0"
+  - name: artis3n.tailscale
+    version: "1.2.1"
+  - name: containers.podman
+    version: "1.20.2"
+  - name: community.crypto
+    version: "3.2.2"
+  - name: hifis.toolkit
+    version: "6.3.2"

@@ -1,0 +1,16 @@
+# {{ ansible_managed }}
+defaults
+tls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+syslog LOG_MAIL
+aliases /etc/aliases
+
+account mailgun
+host {{ mailgun_smtp_host }}
+port {{ mailgun_smtp_port }}
+auth on
+user {{ mailgun_user }}
+password {{ mailgun_password }}
+from {{ inventory_hostname }}@{{ mailgun_from }}
+
+account default : mailgun

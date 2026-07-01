@@ -1,0 +1,12 @@
+---
+packages:
+  - htop
+  - rsync
+  - curl
+  - netcat-openbsd
+  - fail2ban
+  - cron
+enabled_services:
+  - ssh
+  - fail2ban
+  - cron

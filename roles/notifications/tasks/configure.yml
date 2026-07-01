@@ -1,0 +1,30 @@
+---
+- name: Generate mail.rc
+  become: true
+  ansible.builtin.copy:
+    src: mail.rc
+    dest: /etc/mail.rc
+    group: root
+    mode: "0644"
+    owner: root
+  notify: Test notifications
+- name: Generate Aliases
+  become: true
+  ansible.builtin.template:
+    src: aliases.j2
+    dest: /etc/aliases
+    group: root
+    mode: "0644"
+    owner: root
+  notify: Test notifications
+- name: Generate msmtprc
+  become: true
+  ansible.builtin.template:
+    src: msmtprc.j2
+    dest: /etc/msmtprc
+    group: root
+    mode: "0600"
+    owner: root
+  notify: Test notifications
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers

@@ -1,0 +1,7 @@
+---
+packages:
+  - msmtp
+  - msmtp-mta
+  - s-nail
+mailgun_smtp_host: smtp.mailgun.org
+mailgun_smtp_port: 587

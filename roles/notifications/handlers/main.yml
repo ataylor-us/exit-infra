@@ -1,0 +1,7 @@
+---
+- name: Test notifications
+  ansible.builtin.shell:
+    cmd: 'echo "Testing notifications on {{ inventory_hostname }}!" | msmtp root'
+    executable: /bin/bash
+  become: true
+  changed_when: true
