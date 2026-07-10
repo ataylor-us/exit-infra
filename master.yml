@@ -4,7 +4,7 @@
  # Settings from https://tailscale.com/docs/features/exit-nodes?tab=linux
   pre_tasks:
     - name: Enable IP forwarding for Tailscale exit node
-      when: "'production' in group_names"
+      when: "'tailscale' in group_names"
       become: true
       ansible.posix.sysctl:
         name: "{{ item }}"
@@ -27,7 +27,7 @@
 #   - containers
     - terminal
     - role: artis3n.tailscale.machine
-      when: "'production' in group_names"
+      when: "'tailscale' in group_names"
       vars:
         tailscale_args: "--advertise-exit-node"
       tags: tailscale
