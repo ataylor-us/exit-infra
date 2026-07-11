@@ -22,9 +22,9 @@
     - role: disks
       when: "'vm' not in group_names and 'pi' not in group_names"
     - editor
-#   - mounts
+    #   - mounts
     - backups
-#   - containers
+    #   - containers
     - terminal
     - role: artis3n.tailscale.machine
       when: "'tailscale' in group_names"
@@ -33,6 +33,6 @@
       tags: tailscale
     - notifications
     - file_manager
-#   - reverse_proxy
+    #   - reverse_proxy
     - drift_management
     - hifis.toolkit.unattended_upgrades
