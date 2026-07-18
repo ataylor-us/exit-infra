@@ -5,14 +5,14 @@ roles:
     version: v3.1.0
 collections:
   - name: community.general
-    version: "13.1.0"
+    version: "13.2.0"
   - name: artis3n.tailscale
     version: "1.2.1"
   - name: containers.podman
     version: "1.20.2"
   - name: community.crypto
-    version: "3.2.2"
+    version: "3.3.0"
   - name: hifis.toolkit
     version: "6.3.2"
   - name: ansible.posix
-    version: "2.2.0"
+    version: "2.2.2"
