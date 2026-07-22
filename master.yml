@@ -29,7 +29,7 @@
     - role: artis3n.tailscale.machine
       when: "'tailscale' in group_names"
       vars:
-        tailscale_args: "--advertise-exit-node"
+        tailscale_args: "--advertise-exit-node --advertise-routes=192.168.1.0/24"
       tags: tailscale
     - notifications
     - file_manager
