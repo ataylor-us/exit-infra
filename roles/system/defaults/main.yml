@@ -6,6 +6,7 @@ packages:
   - netcat-openbsd
   - fail2ban
   - cron
+  - fastfetch
 enabled_services:
   - ssh
   - fail2ban
