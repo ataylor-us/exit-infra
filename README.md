@@ -2,8 +2,6 @@
 
 Base playbook to set up a Debian box to be a [tailscale exit node](https://tailscale.com/docs/features/exit-nodes).
 
-Tested with Trixie, working on Ubuntu 26 support.
-
 ## Running
 
 ```bash
