@@ -1,8 +1,14 @@
 ---
 - name: Set up debian box
   hosts: all
- # Settings from https://tailscale.com/docs/features/exit-nodes?tab=linux
   pre_tasks:
+    - name: Set ansible_become_exe for sudo-rs (Ubuntu) boxes
+      ansible.builtin.set_fact:
+        ansible_become_exe: /usr/bin/sudo.ws
+      when:
+        - ansible_facts['distribution'] == 'Ubuntu'
+        - ansible_facts['distribution_version'] is version('25.10', '>=')
+    # Settings from https://tailscale.com/docs/features/exit-nodes?tab=linux
     - name: Enable IP forwarding for Tailscale exit node
       when: "'tailscale' in group_names"
       become: true

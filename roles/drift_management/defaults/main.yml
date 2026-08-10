@@ -1,10 +1,13 @@
 ---
+openvox_suites:
+  Debian: "debian{{ ansible_facts['distribution_major_version'] }}"
+  Ubuntu: "ubuntu{{ ansible_facts['distribution_version'] }}"
 apt_repos:
   - name: openvox
     url: https://apt.voxpupuli.org
     key_url: https://apt.voxpupuli.org/openvox-keyring.gpg
     keyring: /etc/apt/keyrings/openvox.gpg
-    suite: "debian{{ ansible_facts['distribution_major_version'] }}"
+    suite: "{{ openvox_suites[ansible_facts['distribution']] }}"
     component: openvox8
 packages:
   - openvox-agent
