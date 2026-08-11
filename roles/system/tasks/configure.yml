@@ -43,3 +43,40 @@
     name: persist_journald
     apply:
       become: true
+# TODO: clean this up, it works it needs to be refined
+# TODO: test this with debian, its only been tested with ubuntu 26
+- name: Configure dropbear for remote LUKS unlock
+  when: "'encrypted_boot' in group_names"
+  become: true
+  block:
+    - name: Install dropbear-initramfs
+      ansible.builtin.apt:
+        name: dropbear-initramfs
+        state: present
+    - name: Configure dropbear options
+      ansible.builtin.copy:
+        content: |
+          DROPBEAR_OPTIONS="-I 180 -j -k -p 22 -s -c cryptroot-unlock"
+        dest: /etc/dropbear/initramfs/dropbear.conf
+        owner: root
+        group: root
+        mode: "0644"
+      notify: Rebuild initramfs
+    - name: Write dropbear authorized key
+      ansible.builtin.copy:
+        content: "{{ dropbear_authorized_key }}\n"
+        dest: /etc/dropbear/initramfs/authorized_keys
+        owner: root
+        group: root
+        mode: "0600"
+      notify: Rebuild initramfs
+    - name: Reuse openssh host keys for dropbear
+      ansible.builtin.command:
+        cmd: dropbearconvert openssh dropbear /etc/ssh/ssh_host_{{ item }}_key /etc/dropbear/initramfs/dropbear_{{ item }}_host_key
+        creates: /etc/dropbear/initramfs/dropbear_{{ item }}_host_key
+      loop:
+        - rsa
+        - ed25519
+        # uneeded?
+        - ecdsa
+      notify: Rebuild initramfs
