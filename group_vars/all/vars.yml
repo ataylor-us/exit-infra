@@ -31,8 +31,8 @@ nfs_quadlet_options:
     WantedBy=default.target
 default_podman_interface: "podman1"
 timezone: "America/New_York"
-puppet_server: "{{ lookup('community.general.passwordstore', 'Repositories/debian-base-infra/puppet_server') }}"
-mailgun_user: "{{ lookup('community.general.passwordstore', 'Repositories/debian-base-infra/mailgun_user') }}"
-mailgun_password: "{{ lookup('community.general.passwordstore', 'Repositories/debian-base-infra/mailgun_password') }}"
-mailgun_from: "{{ lookup('community.general.passwordstore', 'Repositories/debian-base-infra/mailgun_from') }}"
-notification_email: "{{ lookup('community.general.passwordstore', 'Repositories/debian-base-infra/notification_email') }}"
+puppet_server: "{{ lookup('community.general.passwordstore', 'Repositories/debian-ubuntu-base-infra/puppet_server') }}"
+mailgun_user: "{{ lookup('community.general.passwordstore', 'Repositories/debian-ubuntu-base-infra/mailgun_user') }}"
+mailgun_password: "{{ lookup('community.general.passwordstore', 'Repositories/debian-ubuntu-base-infra/mailgun_password') }}"
+mailgun_from: "{{ lookup('community.general.passwordstore', 'Repositories/debian-ubuntu-base-infra/mailgun_from') }}"
+notification_email: "{{ lookup('community.general.passwordstore', 'Repositories/debian-ubuntu-base-infra/notification_email') }}"
