@@ -8,6 +8,7 @@
       when:
         - ansible_facts['distribution'] == 'Ubuntu'
         - ansible_facts['distribution_version'] is version('25.10', '>=')
+      tags: always
     # Settings from https://tailscale.com/docs/features/exit-nodes?tab=linux
     - name: Enable IP forwarding for Tailscale exit node
       when: "'tailscale' in group_names"
