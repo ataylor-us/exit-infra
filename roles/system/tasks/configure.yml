@@ -70,13 +70,3 @@
         group: root
         mode: "0600"
       notify: Rebuild initramfs
-    - name: Reuse openssh host keys for dropbear
-      ansible.builtin.command:
-        cmd: dropbearconvert openssh dropbear /etc/ssh/ssh_host_{{ item }}_key /etc/dropbear/initramfs/dropbear_{{ item }}_host_key
-        creates: /etc/dropbear/initramfs/dropbear_{{ item }}_host_key
-      loop:
-        - rsa
-        - ed25519
-        # uneeded?
-        - ecdsa
-      notify: Rebuild initramfs
