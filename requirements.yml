@@ -3,9 +3,11 @@ roles:
   - name: persist_journald
     src: https://github.com/cisagov/ansible-role-persist-journald
     version: v3.1.0
+  - name: mrlesmithjr.netplan
+    version: v0.4.3
 collections:
   - name: community.general
-    version: "13.3.0"
+    version: "13.4.0"
   - name: artis3n.tailscale
     version: "1.2.1"
   - name: containers.podman
