@@ -8,7 +8,9 @@ packages:
   - fail2ban
   - cron
   - fastfetch
+  - unzip
 enabled_services:
   - ssh
   - fail2ban
   - cron
+  - fstrim.timer
