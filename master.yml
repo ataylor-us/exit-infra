@@ -44,6 +44,8 @@
         tailscale_args: "--advertise-exit-node --advertise-routes=192.168.1.0/24"
       tags: tailscale
     - notifications
+    - role: ups
+      when: ups | default(false)
     - file_manager
     #   - reverse_proxy
     - drift_management
